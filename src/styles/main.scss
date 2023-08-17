@@ -1,0 +1,354 @@
+:root {
+    --slider-percentage: 33.3333%
+}
+
+$clr-main-green: #A4FFAF;
+$clr-main-white: #e6e5ea;
+$clr-main-bluegray: #807e8d;
+$clr-main-lightgray: #24232C;
+$clr-main-darkgray: #18171f;
+$clr-strength-strong: #A4FFAF;
+$clr-strength-medium: #f6cc65;
+$clr-strength-weak: #DB6633;
+$clr-strength-veryweak: #c00000;
+
+@font-face {
+    font-family: "JetBrainsMono-Italic";
+    src: url(/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: "JetBrainsMono";
+    src: url(/fonts/JetBrainsMono-VariableFont_wght.ttf);
+}
+
+// Resets
+* {
+    color: $clr-main-white;
+    box-sizing: border-box;
+    font-family: "JetBrainsMono";
+}
+html {
+    min-height: 100lvh;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(#15141c, #08070c) no-repeat;
+}
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100lvh;
+}
+
+// Main container, utility classes
+main#root {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100lvh;
+}
+
+.darkgray-bg {
+    background-color: $clr-main-darkgray;
+}
+
+.lightgray-bg {
+    background-color: $clr-main-lightgray;
+}
+
+.flex-space-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.main-row {
+    width: 90%;
+    max-width: 550px;
+    padding: 24px;
+    gap: 12px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.sub-row {
+    height: 64px;
+    padding: 0 24px;
+    margin: 12px 0;
+}
+
+.main-row.low-padding {
+    padding: 8px 24px;
+}
+
+// Typo
+h1 {
+    margin: 0;
+    font-size: 30px;
+    word-break: break-all;
+    padding-right: 12px;
+}
+
+h2 {
+    margin: 0;
+    text-align: center;
+    color: $clr-main-bluegray;
+}
+
+p {
+    margin: 0;
+}
+
+// Viewer
+.viewerButton {
+    background: url(/images/icon-copy.svg) center no-repeat;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    width: 21px;
+    height: 24px;
+    box-sizing: content-box;
+    filter: brightness(1);
+    transition: 0.25s filter ease-in;
+    flex-shrink: 0;
+}
+
+.viewerButton:hover {
+    filter: brightness(3);
+}
+
+// Length
+#lengthSlider {
+    appearance: none;
+    width: 100%;
+    margin: 24px 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+#lengthSlider::-webkit-slider-runnable-track {
+    background: linear-gradient(to right,$clr-main-green, $clr-main-green) 0% 50% / var(--slider-percentage, 100%) 100% no-repeat $clr-main-darkgray;
+    -webkit-appearance: none; /* Necessary to disable the default appearance */
+    height: 10px;
+    width: 100%;
+}
+
+
+#lengthSlider::-moz-range-track {
+    background: $clr-main-darkgray;
+    height: 10px;
+    width: 100%;
+}
+
+#lengthSlider::-moz-range-progress {
+    background: $clr-main-green; /* The progressed side */
+    height: 10px;
+}
+
+#lengthSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: $clr-main-white;
+    border: 1.5pt solid $clr-main-white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-top: 5px - 16px;
+    transition: 0.3s all ease-in;
+}
+
+#lengthSlider::-moz-range-thumb {
+    background-color: $clr-main-white;
+    border: 1.5pt solid $clr-main-white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: 0.3s all ease-in;    
+}
+
+#lengthSlider::-webkit-slider-thumb:active,
+#lengthSlider::-webkit-slider-thumb:hover {
+    background-color: $clr-main-darkgray;
+    border-color: $clr-main-green;
+}
+
+#lengthSlider::-moz-range-thumb:active,
+#lengthSlider::-moz-range-thumb:hover {
+    background-color: $clr-main-darkgray;
+    border-color: $clr-main-green;
+}
+
+.length-label {
+    font-size: 18px;
+}
+
+.length-span {
+    font-size: 28px;
+    font-weight: 600;
+    color: $clr-main-green;
+}
+
+// Include
+input[type="checkbox"] {
+    appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border: 1.5pt solid $clr-main-white;
+    transition: 0.3s all ease-in;
+    position: relative;
+    margin-right: 20px;
+}
+
+input[type="checkbox"]::after {
+    position: absolute;
+    opacity: 0;
+    content: url(/images/icon-check.svg);
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    right: 1px;
+    bottom: 1px;
+    transition: 0.3s all ease-in;
+}
+
+input[type="checkbox"]:hover {
+    border: 1.5pt solid $clr-main-green;
+}
+
+input[type="checkbox"]:checked {
+    background-color: $clr-main-green;
+    border: 1.5pt solid $clr-main-green;
+}
+
+input[type="checkbox"]:checked::after {
+    opacity: 1;
+}
+
+.include-label {
+    vertical-align: top;
+    font-size: 18px;
+}
+
+// Strength
+.strengthParagraph {
+    color: $clr-main-bluegray;
+    font-weight: 500;
+}
+
+.strengthText {
+    margin-left: auto;
+    margin-right: 16px;
+    font-size: 22px;
+    text-align: right;
+}
+
+.strengthColumn-wrapper {
+    gap: 6px;
+}
+
+.strengthColumn {
+    width: 12px;
+    height: 45%;
+    display: inline-block;
+    border: 1.5pt solid $clr-main-white;
+    background-color: transparent;
+    transition: 0.3s all ease-in,
+}
+
+.strengthColumn.strong {
+    background-color: $clr-strength-strong;
+    border: 1.5pt solid $clr-strength-strong;
+}
+
+.strengthColumn.med {
+    background-color: $clr-strength-medium;
+    border: 1.5pt solid $clr-strength-medium;
+}
+
+.strengthColumn.weak {
+    background-color: $clr-strength-weak;
+    border: 1.5pt solid $clr-strength-weak;
+}
+
+.strengthColumn.vweak {
+    background-color: $clr-strength-veryweak;
+    border: 1.5pt solid $clr-strength-veryweak;
+}
+
+// Generate
+.generateButton {
+    background-color: $clr-main-green;
+    border: 1.5pt solid $clr-main-green;
+    color: $clr-main-darkgray;
+    width: 100%;
+    height: 64px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: 0.25s all ease-in;
+}
+
+.generateButton svg path {
+    transition: 0.25s fill ease-in;
+}
+
+.generateButton:hover {
+    background-color: transparent;
+    color: $clr-main-green;
+}
+
+.generateButton:hover svg path {
+    fill: $clr-main-green;
+} 
+
+@media only screen and (max-width: 480px) {
+    .sub-row {
+        padding: 0 12px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .length-label,
+    .include-label {
+        font-size: 15px;
+    }
+
+    .length-span {
+        font-size: 24px;
+    }
+
+    .strengthParagraph {
+        font-size: 14px;
+    }
+
+    .strengthText {
+        margin-right: 12px;
+        font-size: 20px;
+    }
+
+    .generateButton,
+    .strengthText {
+        font-size: 18px;
+    }
+    
+}
